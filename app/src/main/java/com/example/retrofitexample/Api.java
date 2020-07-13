@@ -1,6 +1,4 @@
-package com.example.allrestcalls;
-
-import android.text.Editable;
+package com.example.retrofitexample;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

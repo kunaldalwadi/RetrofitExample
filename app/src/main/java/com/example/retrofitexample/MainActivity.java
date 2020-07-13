@@ -1,10 +1,10 @@
-package com.example.allrestcalls;
+package com.example.retrofitexample;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.allrestcalls.databinding.MainActivityBinding;
+import com.example.retrofitexample.databinding.MainActivityBinding;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.example.allrestcalls;
+package com.example.retrofitexample;
 
 import org.junit.Test;
 
