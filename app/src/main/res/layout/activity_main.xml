@@ -11,6 +11,10 @@
             name="lastname"
             type="String" />
 
+        <variable
+            name="person"
+            type="com.example.retrofitexample.Person" />
+
     </data>
 
     <LinearLayout
@@ -22,19 +26,22 @@
 
         <TextView
             android:id="@+id/tv_firstname"
-            android:text="@{firstname}"
+            android:text="@{person.firstname}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:id="@+id/tv_lastname"
-            android:text="@{lastname}"
+            android:text="@{person.lastname}"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
 
 
         <TextView
             android:text="https://localhost      has already been added to the URL"
+            android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" />

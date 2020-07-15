@@ -33,8 +33,8 @@ public class MainActivity extends BaseActivity {
 //        View mView = mMainActivityBinding.getRoot();
 //        setContentView(mView);
 
-        mMainActivityBinding.setFirstname("Kunal");
-        mMainActivityBinding.setLastname("Dalwadi");
+        Person person = new Person("Elon", "Musk");
+        mMainActivityBinding.setPerson(person);
 
         mApi = createApiObject();
 
