@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class = "MainActivityBinding">
+        <variable
+            name="firstname"
+            type="String" />
+
+        <variable
+            name="lastname"
+            type="String" />
 
     </data>
 
@@ -12,6 +19,19 @@
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv_firstname"
+            android:text="@{firstname}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_lastname"
+            android:text="@{lastname}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
         <TextView
             android:text="https://localhost      has already been added to the URL"
