@@ -17,10 +17,11 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.OkHttpClient;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = "BaseActivity";
     private AlertDialog alertDialog;
