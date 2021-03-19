@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.retrofitexample.data.Api;
+import com.example.retrofitexample.data.ApiHelper;
 import com.example.retrofitexample.presentation.BaseActivity;
 import com.example.retrofitexample.data.model.Person;
 import com.example.retrofitexample.R;
@@ -18,8 +19,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
-
-    public Api mApi;
+    
     public static final String TAG = MainActivity.class.getSimpleName();
     public MainActivityBinding mMainActivityBinding;
     public String responseFromService;
@@ -39,9 +39,8 @@ public class MainActivity extends BaseActivity {
 
         Person person = new Person("Elon", "Musk");
         mMainActivityBinding.setPerson(person);
-
-        mApi = createApiObject();
-
+        
+    
         //GET call
         mMainActivityBinding.btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +159,7 @@ public class MainActivity extends BaseActivity {
 
         try
         {
-            Call<ResponseBody> call = mApi.makeGETServiceCall(URL);
+            Call<ResponseBody> call =  ApiHelper.getApi().makeGETServiceCall(URL);
             Response<ResponseBody> response = call.execute();
             if (response.body() != null)
             {
@@ -182,7 +181,7 @@ public class MainActivity extends BaseActivity {
 
         try
         {
-            Call<ResponseBody> call = mApi.makePOSTServiceCall(URL);
+            Call<ResponseBody> call =  ApiHelper.getApi().makePOSTServiceCall(URL);
             Response<ResponseBody> response = call.execute();
             if (response.body() != null)
             {
@@ -204,7 +203,7 @@ public class MainActivity extends BaseActivity {
 
         try
         {
-            Call<ResponseBody> call = mApi.makePUTServiceCall(URL);
+            Call<ResponseBody> call =  ApiHelper.getApi().makePUTServiceCall(URL);
             Response<ResponseBody> response = call.execute();
             if (response.body() != null)
             {
@@ -226,7 +225,7 @@ public class MainActivity extends BaseActivity {
 
         try
         {
-            Call<ResponseBody> call = mApi.makeDELETEServiceCall(URL);
+            Call<ResponseBody> call =  ApiHelper.getApi().makeDELETEServiceCall(URL);
             Response<ResponseBody> response = call.execute();
             if (response.body() != null)
             {
@@ -248,7 +247,7 @@ public class MainActivity extends BaseActivity {
 
         try
         {
-            Call<ResponseBody> call = mApi.makeHEADServiceCall(URL);
+            Call<ResponseBody> call =  ApiHelper.getApi().makeHEADServiceCall(URL);
             Response<ResponseBody> response = call.execute();
             if (response.body() != null)
             {
