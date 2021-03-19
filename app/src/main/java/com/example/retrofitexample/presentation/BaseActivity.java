@@ -1,10 +1,11 @@
-package com.example.retrofitexample;
+package com.example.retrofitexample.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import com.example.retrofitexample.data.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -27,20 +28,7 @@ public class BaseActivity extends Activity {
     private boolean connected = false;
 
 
-    public void showAlertDialog(Context context, String title, String message) {
-        dismissDialog();
-        alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setCancelable(true);
-        alertDialog.show();
-    }
-
-    public void dismissDialog() {
-        if (alertDialog != null && alertDialog.isShowing()) {
-            alertDialog.dismiss();
-        }
-    }
+   
 
 
 /*

@@ -1,9 +1,13 @@
-package com.example.retrofitexample;
+package com.example.retrofitexample.presentation.view;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.retrofitexample.data.Api;
+import com.example.retrofitexample.presentation.BaseActivity;
+import com.example.retrofitexample.data.model.Person;
+import com.example.retrofitexample.R;
 import com.example.retrofitexample.databinding.MainActivityBinding;
 
 import java.io.IOException;
