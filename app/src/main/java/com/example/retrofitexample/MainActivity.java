@@ -8,6 +8,7 @@ import com.example.retrofitexample.databinding.MainActivityBinding;
 
 import java.io.IOException;
 
+import androidx.databinding.DataBindingUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -23,9 +24,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMainActivityBinding = MainActivityBinding.inflate(getLayoutInflater());
-        View mView = mMainActivityBinding.getRoot();
-        setContentView(mView);
+
+        //this is just another way to bind activity with the java file.
+        mMainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        //this is another way to bind activity with the java file
+//        mMainActivityBinding = MainActivityBinding.inflate(getLayoutInflater());
+//        View mView = mMainActivityBinding.getRoot();
+//        setContentView(mView);
+
+        Person person = new Person("Elon", "Musk");
+        mMainActivityBinding.setPerson(person);
 
         mApi = createApiObject();
 
