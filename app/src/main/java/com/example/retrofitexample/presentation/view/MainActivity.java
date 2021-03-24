@@ -8,6 +8,7 @@ import com.example.retrofitexample.data.Api;
 import com.example.retrofitexample.data.ApiHelper;
 import com.example.retrofitexample.data.GetCallRepo;
 import com.example.retrofitexample.data.PostCallRepo;
+import com.example.retrofitexample.data.PutCallRepo;
 import com.example.retrofitexample.presentation.BaseActivity;
 import com.example.retrofitexample.data.model.Person;
 import com.example.retrofitexample.R;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private String dataFromEditText = "";
     private GetCallRepo mGetCallRepo;
     private PostCallRepo mPostCallRepo;
+    private PutCallRepo mPutCallRepo;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,8 @@ public class MainActivity extends BaseActivity {
         mMainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mGetCallRepo = new GetCallRepo();
         mPostCallRepo = new PostCallRepo();
-        mMainActivityViewModelFactory = new MainActivityViewModelFactory(mGetCallRepo, mPostCallRepo);
+        mPutCallRepo = new PutCallRepo();
+        mMainActivityViewModelFactory = new MainActivityViewModelFactory(mGetCallRepo, mPostCallRepo, mPutCallRepo);
         mMainActivityViewModel = new ViewModelProvider(this, mMainActivityViewModelFactory).get(MainActivityViewModel.class);
     
         //this is another way to bind activity with the java file
@@ -76,19 +79,8 @@ public class MainActivity extends BaseActivity {
         mMainActivityBinding.btnPut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String dataFromEditText = getDataFromEditText();
-                        responseFromService = makePUTServiceCall(dataFromEditText);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                setTextToTextView(responseFromService);
-                            }
-                        });
-                    }
-                }).start();
+                dataFromEditText = getDataFromEditText();
+                mMainActivityViewModel.makePutCallToRepo(dataFromEditText);
             }
         });
         
@@ -136,6 +128,7 @@ public class MainActivity extends BaseActivity {
     
         mMainActivityViewModel.startObservingGetCallResponse().observe(MainActivity.this, getResponseFromServer -> setTextToTextView(getResponseFromServer));
         mMainActivityViewModel.startObservingPostCallResponse().observe(MainActivity.this, postResponseFromServer -> setTextToTextView(postResponseFromServer));
+        mMainActivityViewModel.startObservingPutCallResponse().observe(MainActivity.this, putResponseFromServer -> setTextToTextView(putResponseFromServer));
     }
     
     public String getDataFromEditText() {
