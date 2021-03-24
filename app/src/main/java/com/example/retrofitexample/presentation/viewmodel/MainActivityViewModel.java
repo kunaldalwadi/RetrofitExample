@@ -9,9 +9,11 @@ public class MainActivityViewModel extends ViewModel {
     
     private static final String TAG = MainActivityViewModel.class.getSimpleName();
     private MutableLiveData<String> getCallRepoResponse = new MutableLiveData<>();
-    //TODO:
-    private GetCallRepo mGetCallRepo = new GetCallRepo();
+    private GetCallRepo mGetCallRepo;
     
+    public MainActivityViewModel(GetCallRepo getCallRepo) {
+        mGetCallRepo = getCallRepo;
+    }
     
     public void makeGetCallToRepo(String url) {
         MutableLiveData<String> stringGetCallMutableLiveData = mGetCallRepo.makeGetCall(url);

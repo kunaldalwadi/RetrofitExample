@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.retrofitexample.data.Api;
 import com.example.retrofitexample.data.ApiHelper;
+import com.example.retrofitexample.data.GetCallRepo;
 import com.example.retrofitexample.presentation.BaseActivity;
 import com.example.retrofitexample.data.model.Person;
 import com.example.retrofitexample.R;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity {
     private MainActivityViewModel mMainActivityViewModel;
     private MainActivityViewModelFactory mMainActivityViewModelFactory;
     private String dataFromEditText = "";
+    private GetCallRepo mGetCallRepo;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class MainActivity extends BaseActivity {
         
         //this is just another way to bind activity with the java file.
         mMainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mMainActivityViewModelFactory = new MainActivityViewModelFactory();
+        mGetCallRepo = new GetCallRepo();
+        mMainActivityViewModelFactory = new MainActivityViewModelFactory(mGetCallRepo);
         mMainActivityViewModel = new ViewModelProvider(this, mMainActivityViewModelFactory).get(MainActivityViewModel.class);
         
         //this is another way to bind activity with the java file
