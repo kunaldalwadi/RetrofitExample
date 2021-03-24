@@ -1,4 +1,4 @@
-package com.example.retrofitexample;
+package com.example.retrofitexample.data.model;
 
 public class Person {
 
