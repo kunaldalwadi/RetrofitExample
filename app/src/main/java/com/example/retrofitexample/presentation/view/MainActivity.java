@@ -11,12 +11,16 @@ import com.example.retrofitexample.data.model.Person;
 import com.example.retrofitexample.R;
 import com.example.retrofitexample.databinding.MainActivityBinding;
 import com.example.retrofitexample.presentation.viewmodel.MainActivityViewModel;
+import com.example.retrofitexample.presentation.viewmodel.MainActivityViewModelFactory;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -28,6 +32,7 @@ public class MainActivity extends BaseActivity {
     public String responseFromService;
     public String BASE_URL_SECURE_HTTPS = "https://localhost";
     private MainActivityViewModel mMainActivityViewModel;
+    private MainActivityViewModelFactory mMainActivityViewModelFactory;
     private String dataFromEditText = "";
     
     @Override
@@ -36,6 +41,8 @@ public class MainActivity extends BaseActivity {
         
         //this is just another way to bind activity with the java file.
         mMainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mMainActivityViewModelFactory = new MainActivityViewModelFactory();
+        mMainActivityViewModel = new ViewModelProvider(this, mMainActivityViewModelFactory).get(MainActivityViewModel.class);
         
         //this is another way to bind activity with the java file
         //        mMainActivityBinding = MainActivityBinding.inflate(getLayoutInflater());
