@@ -1,13 +1,11 @@
 package com.example.retrofitexample.presentation.viewmodel;
 
-import com.example.retrofitexample.data.GetCallRepo;
-import com.example.retrofitexample.data.PostCallRepo;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
 import com.example.retrofitexample.data.PutCallRepo;
 import com.example.retrofitexample.domain.IGetCallRepo;
 import com.example.retrofitexample.domain.IPostCallRepo;
-
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 public class MainActivityViewModel extends ViewModel {
     

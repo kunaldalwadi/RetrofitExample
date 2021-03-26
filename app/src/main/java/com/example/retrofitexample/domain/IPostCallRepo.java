@@ -4,5 +4,9 @@ import com.example.retrofitexample.data.PostCallRepo;
 
 public interface IPostCallRepo {
 
-     void makePostCall(String url, PostCallRepo.PostCallRepoCallBack postCallRepoCallBack);
+    interface PostCallRepoCallBack {
+        void postCallResponse(String serverResponse);
+    }
+
+    void makePostCall(String url, PostCallRepo.PostCallRepoCallBack postCallRepoCallBack);
 }

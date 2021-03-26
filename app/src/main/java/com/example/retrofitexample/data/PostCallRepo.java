@@ -19,9 +19,7 @@ public class PostCallRepo implements IPostCallRepo {
 
 //    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
 
-    public interface PostCallRepoCallBack{
-        void postCallResponse(String serverResponse);
-    }
+
 
     public void makePostCall(String url, PostCallRepoCallBack postCallRepoCallBack) {
         new Thread(() -> {
