@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.retrofitexample.domain.IGetCallRepo;
 
+import javax.inject.Inject;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -15,13 +17,17 @@ import retrofit2.Response;
 //Repo should have ONLY ONE public method.
 public class GetCallRepo implements IGetCallRepo {
 
-//where the wpr is supposed to be done, just define the interface with methods which will reflect what is going to be sent to the class calling it.
+    private static final String TAG = GetCallRepo.class.getSimpleName();
+
+    @Inject
+    public GetCallRepo() {
+    }
+
+    //where the wpr is supposed to be done, just define the interface with methods which will reflect what is going to be sent to the class calling it.
     public interface GetCallRepoCallBack{
         void onGetCallResponse(String serverResponse);
     }
 
-    
-    private static final String TAG = GetCallRepo.class.getSimpleName();
 //Removing Live Data from Repo cause it is not recommended also that it is connected to the lifecycle of the app and
 //which means we will have to be responsible for managing the LiveData.
 //    private MutableLiveData<String> serverResponse = new MutableLiveData<>();

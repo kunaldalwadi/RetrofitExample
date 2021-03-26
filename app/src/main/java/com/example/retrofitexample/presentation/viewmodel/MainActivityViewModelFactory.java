@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import javax.inject.Inject;
+
 public class MainActivityViewModelFactory implements ViewModelProvider.Factory {
     
     private IGetCallRepo mGetCallRepo;
     private IPostCallRepo mPostCallRepo;
     private PutCallRepo mPutCallRepo;
-    
+
+    @Inject
     public MainActivityViewModelFactory(IGetCallRepo getCallRepo, IPostCallRepo postCallRepo, PutCallRepo putCallRepo) {
         mGetCallRepo = getCallRepo;
         mPostCallRepo = postCallRepo;

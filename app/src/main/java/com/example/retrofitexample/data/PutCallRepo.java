@@ -5,6 +5,9 @@ import android.util.Log;
 import java.io.IOException;
 
 import androidx.lifecycle.MutableLiveData;
+
+import javax.inject.Inject;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -13,8 +16,11 @@ public class PutCallRepo {
     
     private static final String TAG = PutCallRepo.class.getSimpleName();
     private MutableLiveData<String> putResponseFromServer = new MutableLiveData<>();
-    
-    
+
+    @Inject
+    public PutCallRepo() {
+    }
+
     public MutableLiveData<String> makePutCall(String url) {
         new Thread(() -> putResponseFromServer.postValue(makePUTServiceCall(url)));
         return putResponseFromServer;

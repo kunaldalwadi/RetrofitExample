@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.retrofitexample.domain.IPostCallRepo;
 
+import javax.inject.Inject;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -20,6 +22,9 @@ public class PostCallRepo implements IPostCallRepo {
 //    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
 
 
+    @Inject
+    public PostCallRepo() {
+    }
 
     public void makePostCall(String url, PostCallRepoCallBack postCallRepoCallBack) {
         new Thread(() -> {

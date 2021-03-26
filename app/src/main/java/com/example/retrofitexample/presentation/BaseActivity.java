@@ -18,10 +18,12 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import dagger.android.support.DaggerAppCompatActivity;
 import okhttp3.OkHttpClient;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends DaggerAppCompatActivity {
 
     private static final String TAG = "BaseActivity";
     private AlertDialog alertDialog;
