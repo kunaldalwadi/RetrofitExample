@@ -5,18 +5,28 @@ import android.util.Log;
 import java.io.IOException;
 
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.retrofitexample.domain.IPostCallRepo;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class PostCallRepo {
+public class PostCallRepo implements IPostCallRepo {
     
     private static final String TAG = PostCallRepo.class.getSimpleName();
-    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
-    
-    public MutableLiveData<String> makePostCall(String url) {
-        new Thread(() -> postServiceResponse.postValue(makePOSTServiceCall(url)));
-        return postServiceResponse;
+
+
+//    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
+
+
+
+    public void makePostCall(String url, PostCallRepoCallBack postCallRepoCallBack) {
+        new Thread(() -> {
+            String response = makePOSTServiceCall(url);
+            postCallRepoCallBack.postCallResponse(response);
+        }).start();
+
     }
     
     private String makePOSTServiceCall(String URL) {

@@ -1,11 +1,11 @@
 package com.example.retrofitexample.presentation.viewmodel;
 
-import com.example.retrofitexample.data.GetCallRepo;
-import com.example.retrofitexample.data.PostCallRepo;
-import com.example.retrofitexample.data.PutCallRepo;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.retrofitexample.data.PutCallRepo;
+import com.example.retrofitexample.domain.IGetCallRepo;
+import com.example.retrofitexample.domain.IPostCallRepo;
 
 public class MainActivityViewModel extends ViewModel {
     
@@ -13,22 +13,23 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<String> getCallRepoLiveData = new MutableLiveData<>();
     private MutableLiveData<String> postCallRepoLiveData = new MutableLiveData<>();
     private MutableLiveData<String> putCallRepoLiveData = new MutableLiveData<>();
-    private GetCallRepo mGetCallRepo;
-    private PostCallRepo mPostCallRepo;
+    private IGetCallRepo mGetCallRepo;
+    private IPostCallRepo mPostCallRepo;
     private PutCallRepo mPutCallRepo;
     
-    public MainActivityViewModel(GetCallRepo getCallRepo, PostCallRepo postCallRepo, PutCallRepo putCallRepo) {
+    public MainActivityViewModel(IGetCallRepo getCallRepo, IPostCallRepo postCallRepo, PutCallRepo putCallRepo) {
         mGetCallRepo = getCallRepo;
         mPostCallRepo = postCallRepo;
         mPutCallRepo = putCallRepo;
     }
-    
+
+
     public void makeGetCallToRepo(String url) {
-        getCallRepoLiveData.postValue(mGetCallRepo.makeGetCall(url).getValue());
+        mGetCallRepo.makeGetCall(url, serverResponse -> getCallRepoLiveData.postValue(serverResponse));
     }
     
     public void makePostCallToRepo(String url){
-        postCallRepoLiveData.postValue(mPostCallRepo.makePostCall(url).getValue());
+        mPostCallRepo.makePostCall(url, serverResponse -> postCallRepoLiveData.postValue(serverResponse));
     }
     
     public void makePutCallToRepo(String url)
@@ -45,6 +46,7 @@ public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<String> startObservingPutCallResponse(){
         return putCallRepoLiveData;
     }
-    
-    
+
+
+
 }
