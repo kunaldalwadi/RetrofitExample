@@ -22,13 +22,14 @@ public class MainActivityViewModel extends ViewModel {
         mPostCallRepo = postCallRepo;
         mPutCallRepo = putCallRepo;
     }
-    
+
+
     public void makeGetCallToRepo(String url) {
-        getCallRepoLiveData.postValue(mGetCallRepo.makeGetCall(url).getValue());
+        mGetCallRepo.makeGetCall(url, serverResponse -> getCallRepoLiveData.postValue(serverResponse));
     }
     
     public void makePostCallToRepo(String url){
-        postCallRepoLiveData.postValue(mPostCallRepo.makePostCall(url).getValue());
+        mPostCallRepo.makePostCall(url, serverResponse -> postCallRepoLiveData.postValue(serverResponse));
     }
     
     public void makePutCallToRepo(String url)
@@ -45,6 +46,7 @@ public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<String> startObservingPutCallResponse(){
         return putCallRepoLiveData;
     }
-    
-    
+
+
+
 }

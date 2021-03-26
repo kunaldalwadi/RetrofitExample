@@ -9,14 +9,27 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
+//Repo should have ONLY ONE public method.
 public class GetCallRepo {
+
+//where the wpr is supposed to be done, just define the interface with methods which will reflect what is going to be sent to the class calling it.
+    public interface GetCallRepoCallBack{
+        void onGetCallResponse(String serverResponse);
+    }
+
     
     private static final String TAG = GetCallRepo.class.getSimpleName();
-    private MutableLiveData<String> serverResponse = new MutableLiveData<>();
-    
-    public MutableLiveData<String> makeGetCall(String url) {
-        new Thread(() -> serverResponse.postValue(makeGETServiceCall(url))).start();
-        return serverResponse;
+//Removing Live Data from Repo cause it is not recommended also that it is connected to the lifecycle of the app and
+//which means we will have to be responsible for managing the LiveData.
+//    private MutableLiveData<String> serverResponse = new MutableLiveData<>();
+
+//should pass the interface object as the parameter so that this class can send back the response to the class/variable implementing it
+    public void makeGetCall(String url, GetCallRepoCallBack getCallRepoCallBack) {
+        new Thread(() -> {
+            String response = makeGETServiceCall(url);
+            getCallRepoCallBack.onGetCallResponse(response);
+        }).start();
+
     }
     
     private String makeGETServiceCall(String URL) {

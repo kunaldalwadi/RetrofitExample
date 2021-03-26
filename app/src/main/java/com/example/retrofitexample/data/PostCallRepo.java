@@ -12,11 +12,19 @@ import retrofit2.Response;
 public class PostCallRepo {
     
     private static final String TAG = PostCallRepo.class.getSimpleName();
-    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
+
+//    private MutableLiveData<String> postServiceResponse = new MutableLiveData<>();
+
+    public interface PostCallRepoCallBack{
+        void postCallResponse(String serverResponse);
+    }
     
-    public MutableLiveData<String> makePostCall(String url) {
-        new Thread(() -> postServiceResponse.postValue(makePOSTServiceCall(url)));
-        return postServiceResponse;
+    public void makePostCall(String url, PostCallRepoCallBack postCallRepoCallBack) {
+        new Thread(() -> {
+            String response = makePOSTServiceCall(url);
+            postCallRepoCallBack.postCallResponse(response);
+        }).start();
+
     }
     
     private String makePOSTServiceCall(String URL) {
