@@ -3,6 +3,8 @@ package com.example.retrofitexample.presentation.viewmodel;
 import com.example.retrofitexample.data.GetCallRepo;
 import com.example.retrofitexample.data.PostCallRepo;
 import com.example.retrofitexample.data.PutCallRepo;
+import com.example.retrofitexample.domain.IGetCallRepo;
+import com.example.retrofitexample.domain.IPostCallRepo;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,11 +15,11 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<String> getCallRepoLiveData = new MutableLiveData<>();
     private MutableLiveData<String> postCallRepoLiveData = new MutableLiveData<>();
     private MutableLiveData<String> putCallRepoLiveData = new MutableLiveData<>();
-    private GetCallRepo mGetCallRepo;
-    private PostCallRepo mPostCallRepo;
+    private IGetCallRepo mGetCallRepo;
+    private IPostCallRepo mPostCallRepo;
     private PutCallRepo mPutCallRepo;
     
-    public MainActivityViewModel(GetCallRepo getCallRepo, PostCallRepo postCallRepo, PutCallRepo putCallRepo) {
+    public MainActivityViewModel(IGetCallRepo getCallRepo, IPostCallRepo postCallRepo, PutCallRepo putCallRepo) {
         mGetCallRepo = getCallRepo;
         mPostCallRepo = postCallRepo;
         mPutCallRepo = putCallRepo;

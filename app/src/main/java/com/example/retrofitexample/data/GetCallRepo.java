@@ -5,12 +5,15 @@ import android.util.Log;
 import java.io.IOException;
 
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.retrofitexample.domain.IGetCallRepo;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 //Repo should have ONLY ONE public method.
-public class GetCallRepo {
+public class GetCallRepo implements IGetCallRepo {
 
 //where the wpr is supposed to be done, just define the interface with methods which will reflect what is going to be sent to the class calling it.
     public interface GetCallRepoCallBack{
